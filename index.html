@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ADL — Human Performance Optimization | Defense-Validated. Civilian-Ready.</title>
+<meta name="description" content="ADL builds the only live-fire training platform with full digital monitoring. Defense-validated in Israel. Scaling to global defense and U.S. civilian markets via Targo." />
+<meta name="theme-color" content="#0d0e12" />
+
+<meta property="og:title" content="ADL — Defense-Validated. Civilian-Ready." />
+<meta property="og:description" content="The only live-fire training platform with full digital monitoring. Same engine. Two GTMs. Two TAMs." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="assets/demo-poster.jpg" />
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg: #0d0e12;
+    --bg-elev: #14161c;
+    --bg-elev-2: #1a1d25;
+    --line: #23262f;
+    --line-bright: #2e323d;
+    --text: #e9eaee;
+    --text-dim: #8b8f9a;
+    --text-faint: #555863;
+    --gold: #e6a817;
+    --gold-bright: #f5b932;
+    --gold-faint: rgba(230, 168, 23, 0.08);
+    --defense: #6b8aa8;
+    --defense-faint: rgba(107, 138, 168, 0.08);
+    --display: 'Fraunces', 'Times New Roman', serif;
+    --body: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; height: auto; }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ============ NAV ============ */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    padding: 18px 32px;
+    background: rgba(13, 14, 18, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .logo-mark {
+    width: 22px; height: 22px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    position: relative;
+    display: inline-block;
+  }
+  .logo-mark::after {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+  }
+  .nav-links a { transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    padding: 9px 16px;
+    border: 1px solid var(--line-bright);
+    color: var(--text);
+    transition: all 0.2s;
+  }
+  .nav-cta:hover { border-color: var(--gold); color: var(--gold); }
+  @media (max-width: 900px) { .nav-links { display: none; } }
+
+  /* ============ HERO ============ */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding-top: 100px;
+    padding-bottom: 80px;
+  }
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.45;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(to right, var(--bg) 0%, rgba(13,14,18,0.4) 50%, var(--bg) 100%),
+      linear-gradient(to bottom, rgba(13,14,18,0.5) 0%, transparent 30%, transparent 60%, var(--bg) 100%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .hero-title {
+    font-family: var(--display);
+    font-size: clamp(44px, 7.5vw, 104px);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    font-weight: 400;
+    margin-bottom: 32px;
+    max-width: 1100px;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 300;
+  }
+  .hero-sub {
+    font-size: clamp(16px, 1.4vw, 19px);
+    color: var(--text);
+    max-width: 620px;
+    margin-bottom: 56px;
+    line-height: 1.6;
+  }
+  .hero-caption {
+    position: absolute;
+    bottom: 32px;
+    right: 32px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--text-dim);
+    z-index: 2;
+    padding: 8px 14px;
+    border: 1px solid var(--line);
+    background: rgba(13,14,18,0.6);
+    backdrop-filter: blur(8px);
+  }
+  .hero-caption .pulse {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.8); }
+  }
+  @media (max-width: 600px) { .hero-caption { display: none; } }
+
+  /* Dual-brand split */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: stretch;
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin-top: 8px;
+    background: rgba(13,14,18,0.85);
+    backdrop-filter: blur(12px);
+  }
+  .split-half {
+    padding: 36px 32px;
+    position: relative;
+  }
+  .split-half.defense { background: var(--defense-faint); }
+  .split-half.civilian { background: var(--gold-faint); }
+  .split-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--text-faint);
+    margin-bottom: 12px;
+  }
+  .split-brand {
+    font-family: var(--display);
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .split-half.defense .split-brand { color: var(--text); }
+  .split-half.civilian .split-brand { color: var(--gold); }
+  .split-meta {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .split-divider {
+    width: 1px;
+    background: var(--line);
+    position: relative;
+  }
+  .split-divider::before {
+    content: 'ONE PLATFORM';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--text-faint);
+    white-space: nowrap;
+    background: var(--bg);
+    padding: 12px 8px;
+  }
+  @media (max-width: 768px) {
+    .split { grid-template-columns: 1fr; }
+    .split-divider { width: 100%; height: 1px; padding: 24px 0; }
+    .split-divider::before {
+      position: static;
+      transform: none;
+      display: block;
+      text-align: center;
+      padding: 8px;
+    }
+  }
+
+  /* ============ SECTIONS ============ */
+  section {
+    padding: 140px 0;
+    position: relative;
+    border-top: 1px solid var(--line);
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .section-title {
+    font-family: var(--display);
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    font-weight: 400;
+    margin-bottom: 24px;
+    max-width: 900px;
+  }
+  .section-title em { font-style: italic; color: var(--gold); font-weight: 300; }
+  .section-lede {
+    font-size: 19px;
+    color: var(--text-dim);
+    max-width: 640px;
+    margin-bottom: 72px;
+    line-height: 1.6;
+  }
+
+  /* ============ WHY NOW ============ */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .two-col > div {
+    background: var(--bg);
+    padding: 48px 40px;
+  }
+  .col-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    margin-bottom: 24px;
+  }
+  .col-eyebrow.defense { color: var(--defense); }
+  .col-eyebrow.civilian { color: var(--gold); }
+  .col-heading {
+    font-family: var(--display);
+    font-size: 28px;
+    line-height: 1.15;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    margin-bottom: 28px;
+  }
+  .col-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .col-list li {
+    font-size: 15px;
+    color: var(--text-dim);
+    padding-left: 24px;
+    position: relative;
+    line-height: 1.55;
+  }
+  .col-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 12px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.5;
+  }
+  .convergence {
+    margin-top: 56px;
+    padding: 40px 48px;
+    border: 1px solid var(--gold);
+    background: var(--gold-faint);
+    font-family: var(--display);
+    font-size: clamp(20px, 2.2vw, 28px);
+    line-height: 1.35;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .convergence-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: block;
+  }
+  @media (max-width: 768px) {
+    .two-col { grid-template-columns: 1fr; }
+    .two-col > div { padding: 32px 24px; }
+  }
+
+  /* ============ PLATFORM (with product shot) ============ */
+  .platform-showcase {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 64px;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+  .platform-shot {
+    position: relative;
+    border-radius: 0;
+    overflow: hidden;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    aspect-ratio: 9/16;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+  .platform-shot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .platform-shot::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px;
+    width: 40px;
+    height: 2px;
+    background: var(--gold);
+    z-index: 2;
+  }
+  .platform-shot-label {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    background: rgba(13,14,18,0.85);
+    padding: 6px 10px;
+    border: 1px solid var(--line);
+    z-index: 2;
+  }
+  .platform-copy h3 {
+    font-family: var(--display);
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin-bottom: 24px;
+  }
+  .platform-copy p {
+    font-size: 16px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .platform-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-top: 36px;
+    padding-top: 36px;
+    border-top: 1px solid var(--line);
+  }
+  .platform-stat-num {
+    font-family: var(--display);
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .platform-stat-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+  @media (max-width: 900px) {
+    .platform-showcase { grid-template-columns: 1fr; gap: 48px; }
+  }
+
+  .platform-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .platform-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    padding: 40px 32px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .platform-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+  }
+  .platform-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .platform-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-faint);
+    letter-spacing: 0.2em;
+    margin-bottom: 20px;
+  }
+  .platform-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.25em;
+    margin-bottom: 12px;
+  }
+  .platform-card-title {
+    font-family: var(--display);
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 18px;
+    letter-spacing: -0.015em;
+  }
+  .platform-desc {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+  @media (max-width: 900px) { .platform-grid { grid-template-columns: 1fr; } }
+
+  /* ============ DEFENSE VALIDATION ============ */
+  .defense-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+  .stat-block {
+    border-left: 2px solid var(--gold);
+    padding-left: 32px;
+  }
+  .stat-num {
+    font-family: var(--display);
+    font-size: clamp(72px, 9vw, 128px);
+    line-height: 0.9;
+    font-weight: 300;
+    color: var(--gold);
+    letter-spacing: -0.04em;
+    margin-bottom: 12px;
+  }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .stat-sub {
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .defense-detail h4 {
+    font-family: var(--display);
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  .defense-detail p {
+    color: var(--text-dim);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  .defense-rows {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .defense-row {
+    background: var(--bg);
+    padding: 36px 32px;
+  }
+  .defense-row-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .defense-row-title {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .defense-row-body {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  @media (max-width: 900px) {
+    .defense-hero { grid-template-columns: 1fr; gap: 48px; }
+    .defense-rows { grid-template-columns: 1fr; }
+  }
+
+  /* ============ APP GALLERY (Targo) ============ */
+  .app-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 64px 0;
+  }
+  .app-frame {
+    position: relative;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    aspect-ratio: 9/19.5;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .app-frame:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+  }
+  .app-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .app-frame-label {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    background: rgba(13,14,18,0.85);
+    padding: 5px 8px;
+    border: 1px solid var(--line);
+  }
+  @media (max-width: 900px) {
+    .app-gallery { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .traction-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .traction-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    padding: 40px 32px;
+    position: relative;
+  }
+  .traction-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .traction-num {
+    font-family: var(--display);
+    font-size: 56px;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--gold);
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+  }
+  .traction-title {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  .traction-body {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .traction-signal {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+  }
+  @media (max-width: 900px) { .traction-grid { grid-template-columns: 1fr; } }
+
+  /* ============ ROADMAP ============ */
+  .roadmap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+  }
+  .roadmap-phase {
+    padding: 48px 36px;
+    border-right: 1px solid var(--line);
+    position: relative;
+  }
+  .roadmap-phase:last-child { border-right: none; }
+  .roadmap-phase::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .roadmap-phase:hover::before { transform: scaleX(1); }
+  .roadmap-when {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .roadmap-title {
+    font-family: var(--display);
+    font-size: 26px;
+    font-weight: 400;
+    margin-bottom: 24px;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+  }
+  .roadmap-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .roadmap-list li {
+    font-size: 14px;
+    color: var(--text-dim);
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.55;
+  }
+  .roadmap-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+  @media (max-width: 900px) {
+    .roadmap { grid-template-columns: 1fr; }
+    .roadmap-phase { border-right: none; border-bottom: 1px solid var(--line); }
+    .roadmap-phase:last-child { border-bottom: none; }
+  }
+
+  /* ============ MARKETS ============ */
+  .markets {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .market {
+    background: var(--bg);
+    padding: 56px 48px;
+  }
+  .market-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    margin-bottom: 32px;
+  }
+  .market.defense .market-label { color: var(--defense); }
+  .market.civilian .market-label { color: var(--gold); }
+  .market-num {
+    font-family: var(--display);
+    font-size: clamp(56px, 6vw, 88px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+  .market.defense .market-num { color: var(--defense); }
+  .market.civilian .market-num { color: var(--gold); }
+  .market-growth {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 28px;
+  }
+  .market-name {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-bottom: 28px;
+    line-height: 1.3;
+  }
+  .market-body {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .market-body strong { color: var(--text); font-weight: 500; }
+  .market-source {
+    margin-top: 24px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-faint);
+    letter-spacing: 0.15em;
+  }
+  @media (max-width: 768px) {
+    .markets { grid-template-columns: 1fr; }
+    .market { padding: 40px 28px; }
+  }
+
+  /* ============ COMPETITION ============ */
+  .comp-intro {
+    font-family: var(--display);
+    font-size: clamp(22px, 2.4vw, 30px);
+    line-height: 1.35;
+    color: var(--text);
+    max-width: 800px;
+    margin-bottom: 56px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .comp-intro em { color: var(--gold); font-style: italic; }
+  .comp-grid {
+    display: grid;
+    grid-template-columns: 180px 1fr 1fr 1fr;
+    border: 1px solid var(--line);
+    margin-bottom: 56px;
+  }
+  .comp-cell {
+    padding: 20px 18px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .comp-cell:nth-child(4n) { border-right: none; }
+  .comp-grid > .comp-cell:nth-last-child(-n+4) { border-bottom: none; }
+  .comp-cell.header {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    background: var(--bg-elev);
+  }
+  .comp-cell.row-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--text);
+    background: var(--bg-elev);
+  }
+  .comp-cell.us {
+    background: rgba(230, 168, 23, 0.06);
+    color: var(--gold);
+    font-weight: 500;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+  .comp-cell.empty { color: var(--text-faint); }
+  .moats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .moat {
+    background: var(--bg);
+    padding: 28px 24px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .moat-num {
+    font-family: var(--display);
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    min-width: 32px;
+  }
+  .moat-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.45;
+    padding-top: 6px;
+  }
+  @media (max-width: 900px) {
+    .comp-grid { grid-template-columns: 1fr; font-size: 12px; }
+    .comp-cell { border-right: none; }
+    .moats { grid-template-columns: 1fr; }
+  }
+
+  /* ============ TEAM ============ */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-bottom: 64px;
+  }
+  .person {
+    border-top: 1px solid var(--line);
+    padding-top: 28px;
+  }
+  .person-name {
+    font-family: var(--display);
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    margin-bottom: 8px;
+  }
+  .person-role {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 20px;
+  }
+  .person-bio {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+  .advisor {
+    margin-top: 56px;
+    padding: 48px 40px;
+    border: 1px solid var(--gold);
+    background: var(--gold-faint);
+  }
+  .advisor-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .advisor-name {
+    font-family: var(--display);
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .advisor-bio {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.65;
+    max-width: 800px;
+  }
+  .backers {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .backer {
+    background: var(--bg);
+    padding: 32px 28px;
+  }
+  .backer-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--text-faint);
+    margin-bottom: 14px;
+  }
+  .backer-name {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .backer-detail {
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  @media (max-width: 900px) {
+    .team-grid { grid-template-columns: 1fr; }
+    .backers { grid-template-columns: 1fr; }
+  }
+
+  /* ============ CONTACT ============ */
+  .contact {
+    text-align: center;
+    padding: 160px 0 120px;
+  }
+  .contact-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    margin-bottom: 32px;
+  }
+  .contact-title {
+    font-family: var(--display);
+    font-size: clamp(48px, 7vw, 88px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-weight: 400;
+    margin-bottom: 24px;
+  }
+  .contact-title em { color: var(--gold); font-style: italic; }
+  .contact-sub {
+    font-size: 18px;
+    color: var(--text-dim);
+    max-width: 540px;
+    margin: 0 auto 56px;
+    line-height: 1.55;
+  }
+  .contacts {
+    display: flex;
+    gap: 64px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .contact-card {
+    text-align: left;
+    min-width: 240px;
+  }
+  .contact-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--text-faint);
+    margin-bottom: 10px;
+  }
+  .contact-email {
+    font-family: var(--display);
+    font-size: 22px;
+    color: var(--text);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 4px;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .contact-email:hover { color: var(--gold); border-color: var(--gold); }
+  .contact-name {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
+    margin-top: 8px;
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 48px 0 32px;
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--text-faint);
+  }
+  .footer-inner a:hover { color: var(--gold); }
+
+  /* ============ ANIMATIONS ============ */
+  /* Only hide if JS has marked the element as managed (.js-reveal). 
+     This way no-JS users see everything immediately. */
+  .js-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .js-reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .js-reveal { opacity: 1; transform: none; transition: none; }
+    .hero-caption .pulse { animation: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="logo">
+      <span class="logo-mark"></span>
+      <span>ADL</span>
+    </a>
+    <div class="nav-links">
+      <a href="#platform">Platform</a>
+      <a href="#defense">Defense</a>
+      <a href="#civilian">Targo</a>
+      <a href="#markets">Markets</a>
+      <a href="#team">Team</a>
+    </div>
+    <a href="#contact" class="nav-cta">CONTACT</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header id="top" class="hero">
+  <video class="hero-video" autoplay muted loop playsinline poster="assets/demo-poster.jpg">
+    <source src="assets/demo.mp4" type="video/mp4" />
+  </video>
+  <div class="hero-overlay"></div>
+
+  <div class="container hero-content">
+    <div class="hero-eyebrow">HUMAN PERFORMANCE OPTIMIZATION</div>
+    <h1 class="hero-title">
+      The only live-fire platform with <em>full digital monitoring.</em>
+    </h1>
+    <p class="hero-sub">
+      Real-time, mission-adaptive firearms training — deployed across the Israeli defense establishment, scaling to global defense and U.S. civilian markets.
+    </p>
+
+    <div class="split">
+      <div class="split-half defense">
+        <div class="split-tag">DEFENSE · LAW ENFORCEMENT · HLS</div>
+        <div class="split-brand">ADL Training Solutions</div>
+        <div class="split-meta">Institutional. Mission-critical. Framework-procured.<br/>$3.5M committed · Live deployments today.</div>
+      </div>
+      <div class="split-divider"></div>
+      <div class="split-half civilian">
+        <div class="split-tag">U.S. CIVILIAN · RECREATIONAL</div>
+        <div class="split-brand">Targo</div>
+        <div class="split-meta">Premium experience. Gaming-inspired.<br/>290-range pipeline · Launch H2 2026.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-caption"><span class="pulse"></span>LIVE · CINEMA MODE · LE"B OLYMPIC RANGE</div>
+</header>
+
+<!-- ============ WHY NOW ============ -->
+<section id="why">
+  <div class="container">
+    <div class="section-num reveal">01 — WHY NOW</div>
+    <h2 class="section-title reveal">Two macro tailwinds. <em>One platform.</em></h2>
+
+    <div class="two-col reveal">
+      <div>
+        <div class="col-eyebrow defense">DEFENSE</div>
+        <h3 class="col-heading">Post-October 7, Israeli defense tech is in unprecedented global demand.</h3>
+        <ul class="col-list">
+          <li>NATO members are accelerating training budgets across the alliance.</li>
+          <li>U.S. DoD is prioritizing combat-realistic readiness over simulation-only.</li>
+          <li>Procurement frameworks favor battle-tested, allied-nation technology.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="col-eyebrow civilian">CIVILIAN — U.S.</div>
+        <h3 class="col-heading">Shooting is the last major recreational category without a connected layer.</h3>
+        <ul class="col-list">
+          <li>150M+ firearms owners. 30,000+ ranges. A $5.7B industry.</li>
+          <li>Every adjacent sport has its platform: Strava, Peloton, Zwift, Topgolf.</li>
+          <li>Shooting has none — the category is wide open.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="convergence reveal">
+      <span class="convergence-tag">THE CONVERGENCE</span>
+      The same platform validated by defense forces as combat-grade is what civilian users demand for a premium experience.
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLATFORM ============ -->
+<section id="platform">
+  <div class="container">
+    <div class="section-num reveal">02 — THE PLATFORM</div>
+    <h2 class="section-title reveal">Same engine. <em>Two GTMs. Two TAMs.</em></h2>
+    <p class="section-lede reveal">One shared core. One team. One IP base. Two markets engineered into the architecture from day one.</p>
+
+    <div class="platform-showcase reveal">
+      <div class="platform-shot">
+        <img src="assets/shooting-live.png" alt="Targo app — live shot detection on target" />
+        <div class="platform-shot-label">LIVE SHOT DETECTION · MULTI-SENSOR CAPTURE</div>
+      </div>
+      <div class="platform-copy">
+        <h3>Every shot. Every miss. Every metric. Captured in real time.</h3>
+        <p>Multi-sensor camera-based targets capture not only hits but the misses — the data that traditional paper-target systems lose forever. Shot placement, reaction time, split times, grouping tightness, and session-over-session progression all flow into a single connected platform.</p>
+        <p>Sight-agnostic. Caliber-agnostic. Self-contained. Internet is the only install requirement.</p>
+
+        <div class="platform-stats">
+          <div>
+            <div class="platform-stat-num">8</div>
+            <div class="platform-stat-label">SHOTS TRACKED PER DRILL</div>
+          </div>
+          <div>
+            <div class="platform-stat-num">±cm</div>
+            <div class="platform-stat-label">ACCURACY GRANULARITY</div>
+          </div>
+          <div>
+            <div class="platform-stat-num">0.84s</div>
+            <div class="platform-stat-label">REACTION TIME RESOLUTION</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="platform-grid">
+      <div class="platform-card reveal">
+        <div class="platform-num">/01</div>
+        <div class="platform-tag">HARDWARE</div>
+        <h3 class="platform-card-title">Smart Targets</h3>
+        <p class="platform-desc">Multi-sensor camera-based targets capture hits <em>and</em> misses through heat, motion, and acoustic signal. Stationary and mobile (wheeled) configurations. Sight-agnostic. Self-contained, ruggedized.</p>
+      </div>
+      <div class="platform-card reveal">
+        <div class="platform-num">/02</div>
+        <div class="platform-tag">SOFTWARE</div>
+        <h3 class="platform-card-title">Performance &amp; Training Management</h3>
+        <p class="platform-desc">Real-time hit analytics, scoring, reaction-time and accuracy metrics. Training scheduling, registration, lesson-plan management. Distinct soldier, instructor, and commander dashboards.</p>
+      </div>
+      <div class="platform-card reveal">
+        <div class="platform-num">/03</div>
+        <div class="platform-tag">PLATFORM</div>
+        <h3 class="platform-card-title">Cloud &amp; Wearable Integration</h3>
+        <p class="platform-desc">Multi-range cloud deployment with role-based access. Garmin and Apple Watch integration for physiological data. API-ready for defense systems integration.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEFENSE ============ -->
+<section id="defense">
+  <div class="container">
+    <div class="section-num reveal">03 — DEFENSE VALIDATION</div>
+    <h2 class="section-title reveal">Committed contract. <em>Cross-service framework.</em> Live deployments today.</h2>
+
+    <div class="defense-hero">
+      <div class="stat-block reveal">
+        <div class="stat-num">$3.5M</div>
+        <div class="stat-label">COMMITTED CONTRACT</div>
+        <div class="stat-sub">Israeli Defense Establishment<br/>2-year base · 2-year extension option</div>
+      </div>
+      <div class="defense-detail reveal">
+        <h4>Framework adoption in Israeli defense procurement is the strongest available validation for international expansion.</h4>
+        <p>All future shooting and training demand flows through this prime — no new tender required for incremental orders. A position built once that compounds for years.</p>
+      </div>
+    </div>
+
+    <div class="defense-rows reveal">
+      <div class="defense-row">
+        <div class="defense-row-label">CONTRACTING AUTHORITY</div>
+        <div class="defense-row-title">Israel MoD — Manhar</div>
+        <div class="defense-row-body">Defense Procurement Directorate, via authorized prime contractor for firearms-training equipment.</div>
+      </div>
+      <div class="defense-row">
+        <div class="defense-row-label">PROFESSIONAL AUTHORITY</div>
+        <div class="defense-row-title">IDF Marksmanship Branch</div>
+        <div class="defense-row-body">Center of excellence for combat-shooting doctrine and target validation across the IDF.</div>
+      </div>
+      <div class="defense-row">
+        <div class="defense-row-label">END USERS</div>
+        <div class="defense-row-title">IDF · Israel Police · Defense Agencies</div>
+        <div class="defense-row-body">Every covered training facility across the Israeli defense establishment.</div>
+      </div>
+      <div class="defense-row">
+        <div class="defense-row-label">PREMIUM CIVILIAN ANCHOR</div>
+        <div class="defense-row-title">LE"B Olympic Shooting Range</div>
+        <div class="defense-row-body">Israel's leading civilian facility. ADL targets and platform deployed. Owner: Brig. Gen. (Res.) Moshe "Chico" Tamir.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CIVILIAN — TARGO ============ -->
+<section id="civilian">
+  <div class="container">
+    <div class="section-num reveal">04 — CIVILIAN TRACTION · TARGO</div>
+    <h2 class="section-title reveal">Defense-built. <em>Civilian-validated.</em> Pipeline-ready.</h2>
+    <p class="section-lede reveal">The Targo app brings competition, progression, and community to a category that has none. Built on the same engine that powers our defense customers.</p>
+
+    <div class="app-gallery reveal">
+      <div class="app-frame">
+        <img src="assets/targo-splash.png" alt="Targo app splash screen" />
+        <div class="app-frame-label">SPLASH · BRAND</div>
+      </div>
+      <div class="app-frame">
+        <img src="assets/challenge-intro.png" alt="Precision Rush challenge intro" />
+        <div class="app-frame-label">CHALLENGE BRIEF</div>
+      </div>
+      <div class="app-frame">
+        <img src="assets/shooting-live.png" alt="Live shooting session with shot detection" />
+        <div class="app-frame-label">LIVE SCORING</div>
+      </div>
+      <div class="app-frame">
+        <img src="assets/stats-overview.png" alt="Targo statistics overview with global rank and leaderboard" />
+        <div class="app-frame-label">STATS · LEADERBOARD</div>
+      </div>
+    </div>
+
+    <div class="traction-grid">
+      <div class="traction-card reveal">
+        <div class="traction-tag">U.S. PILOT</div>
+        <div class="traction-num">500+</div>
+        <div class="traction-title">Active users in 7 weeks.</div>
+        <p class="traction-body">Two ranges. 3,000+ rounds fired. Real shooter behavior at scale.</p>
+        <div class="traction-signal">40% FREE-TO-PAID CONVERSION</div>
+      </div>
+      <div class="traction-card reveal">
+        <div class="traction-tag">U.S. PIPELINE</div>
+        <div class="traction-num">290</div>
+        <div class="traction-title">Ranges engaged.</div>
+        <p class="traction-body">Two multi-range operators in active engagement. June 2026 U.S. business-development trip to convert pipeline into deployments.</p>
+        <div class="traction-signal">SECURED PRE-BRAND</div>
+      </div>
+      <div class="traction-card reveal">
+        <div class="traction-tag">ISRAEL ANCHOR</div>
+        <div class="traction-num">LE"B</div>
+        <div class="traction-title">Premium civilian deployment.</div>
+        <p class="traction-body">ADL targets and training-management platform live at Israel's leading civilian shooting facility.</p>
+        <div class="traction-signal">STRATEGIC INVESTOR · CUSTOMER</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROADMAP ============ -->
+<section id="roadmap">
+  <div class="container">
+    <div class="section-num reveal">05 — PRODUCT ROADMAP</div>
+    <h2 class="section-title reveal">Same core. <em>Expanding capabilities.</em> Growing TAM.</h2>
+
+    <div class="roadmap reveal">
+      <div class="roadmap-phase">
+        <div class="roadmap-when">H2 2026</div>
+        <h3 class="roadmap-title">Targo U.S. Launch</h3>
+        <ul class="roadmap-list">
+          <li>Targo consumer brand launches in U.S.</li>
+          <li>First range deployments from 290-pipeline</li>
+          <li>App: profiles · community · cross-range competitions</li>
+          <li>Cinema Mode beta at LE"B Olympic Range</li>
+        </ul>
+      </div>
+      <div class="roadmap-phase">
+        <div class="roadmap-when">H1 2027</div>
+        <h3 class="roadmap-title">Immersive &amp; Real-Time Multiplayer</h3>
+        <ul class="roadmap-list">
+          <li>Cinema Mode general availability — defense + civilian</li>
+          <li>Real-time multi-range multiplayer across geographies</li>
+          <li>First international defense pilot (NATO / U.S.)</li>
+        </ul>
+      </div>
+      <div class="roadmap-phase">
+        <div class="roadmap-when">H2 2027</div>
+        <h3 class="roadmap-title">AI Layer &amp; Defense Expansion</h3>
+        <ul class="roadmap-list">
+          <li>AI scenario generation — adaptive threat profiles</li>
+          <li>2–3 international defense pilots / contracts</li>
+          <li>Series B readiness</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARKETS ============ -->
+<section id="markets">
+  <div class="container">
+    <div class="section-num reveal">06 — THE MARKETS</div>
+    <h2 class="section-title reveal">Two distinct, addressable opportunities. <em>One platform.</em></h2>
+
+    <div class="markets reveal">
+      <div class="market defense">
+        <div class="market-label">DEFENSE</div>
+        <div class="market-num">$15.4B</div>
+        <div class="market-growth">→ $23.4B by 2034 · 5.4% CAGR</div>
+        <div class="market-name">Global Military Simulation &amp; Training Market</div>
+        <p class="market-body">
+          <strong>Israel beachhead — secured.</strong> Framework contract live with four-year visibility.<br/><br/>
+          <strong>NATO + U.S. + Allies — target.</strong> Post-October 7 procurement acceleration. 30+ NATO members increasing training budgets.
+        </p>
+        <div class="market-source">SOURCE — FORTUNE BUSINESS INSIGHTS, 2026</div>
+      </div>
+      <div class="market civilian">
+        <div class="market-label">CIVILIAN — U.S.</div>
+        <div class="market-num">~$600M</div>
+        <div class="market-growth">U.S. civilian SAM · $5.7B industry</div>
+        <div class="market-name">150M+ owners · 30K+ ranges</div>
+        <p class="market-body">
+          <strong>Bottom-up:</strong> 30K ranges × 20% addressable (internet = sole requirement) × ~$100K avg ARR.<br/><br/>
+          <strong>Europe — Phase 2.</strong> Switzerland, Czech Republic, Italy, Nordics. ~5M licensed shooters. TAM extension post-2027.
+        </p>
+        <div class="market-source">SOURCE — IBISWORLD</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPETITION ============ -->
+<section id="competition">
+  <div class="container">
+    <div class="section-num reveal">07 — COMPETITION &amp; MOAT</div>
+    <h2 class="section-title reveal">No competitor combines live fire with digital monitoring. <em>That's the gap we own.</em></h2>
+
+    <p class="comp-intro reveal">Today, when monitoring exists, the shot is laser or dummy. When the shot is live, there's no monitoring. <em>We are alone in the top-right.</em></p>
+
+    <div class="comp-grid reveal">
+      <div class="comp-cell header"></div>
+      <div class="comp-cell header">Hardware-only</div>
+      <div class="comp-cell header">Hardware + Analytics</div>
+      <div class="comp-cell header">Full Integrated Platform</div>
+
+      <div class="comp-cell row-label">LIVE FIRE</div>
+      <div class="comp-cell">Action Target · Longshot · Steel Alive · Silver Mountain</div>
+      <div class="comp-cell">eShot · partial smart-target offerings</div>
+      <div class="comp-cell us">ADL / TARGO</div>
+
+      <div class="comp-cell row-label">SIMULATED (LASER / DUMMY)</div>
+      <div class="comp-cell empty">—</div>
+      <div class="comp-cell">Laser Ammo · similar</div>
+      <div class="comp-cell">TrainShot · ARMM</div>
+
+      <div class="comp-cell row-label">DEFENSE LEGACY</div>
+      <div class="comp-cell empty">—</div>
+      <div class="comp-cell empty">—</div>
+      <div class="comp-cell">Saab · Cubic · Meggitt (different tier)</div>
+    </div>
+
+    <div class="moats reveal">
+      <div class="moat"><div class="moat-num">01</div><div class="moat-text">Live-fire + digital monitoring — only platform</div></div>
+      <div class="moat"><div class="moat-num">02</div><div class="moat-text">4-year framework position — no re-tender</div></div>
+      <div class="moat"><div class="moat-num">03</div><div class="moat-text">Multi-sensor capture — hits and misses</div></div>
+      <div class="moat"><div class="moat-num">04</div><div class="moat-text">Zero install friction — internet only</div></div>
+      <div class="moat"><div class="moat-num">05</div><div class="moat-text">Dual-use platform — defense funds R&amp;D</div></div>
+      <div class="moat"><div class="moat-num">06</div><div class="moat-text">Brand-channel flywheel — margin expansion</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEAM ============ -->
+<section id="team">
+  <div class="container">
+    <div class="section-num reveal">08 — TEAM &amp; BACKERS</div>
+    <h2 class="section-title reveal">Defense pedigree. <em>Platform engineering.</em> Customer-aligned advisors.</h2>
+
+    <div class="team-grid">
+      <div class="person reveal">
+        <div class="person-name">Alon Katvan</div>
+        <div class="person-role">CO-FOUNDER · CEO</div>
+        <p class="person-bio">Entrepreneur · IDF Special Forces (Major, res.) · B.A. Political Science &amp; Middle East Studies. Management, marketing, and operations.</p>
+      </div>
+      <div class="person reveal">
+        <div class="person-name">Omer Yaari</div>
+        <div class="person-role">CO-FOUNDER · CTO</div>
+        <p class="person-bio">Former operator, Shayetet 13 (IDF Naval Special Warfare — Israeli counterpart to U.S. Navy SEALs). B.Sc. Information Systems. Complex systems architecture.</p>
+      </div>
+      <div class="person reveal">
+        <div class="person-name">Boaz Yaari</div>
+        <div class="person-role">MOBILE TEAM LEAD</div>
+        <p class="person-bio">B.Sc. Information Systems. Mobile app development and client-side platform engineering.</p>
+      </div>
+    </div>
+
+    <div class="advisor reveal">
+      <div class="advisor-tag">STRATEGIC ADVISOR · INVESTOR · CUSTOMER</div>
+      <div class="advisor-name">Brig. Gen. (Res.) Moshe "Chico" Tamir</div>
+      <p class="advisor-bio">Former commander, Golani Brigade and Gaza Division. Author of <em>War Without a Symbol</em>, a standard text in IDF officer training. Owner of LE"B Olympic Shooting Range — where ADL targets and platform are deployed today.</p>
+    </div>
+
+    <div class="backers reveal">
+      <div class="backer">
+        <div class="backer-label">EXISTING BACKER</div>
+        <div class="backer-name">Schestowitz Ltd.</div>
+        <div class="backer-detail">One of Israel's leading angel firms.</div>
+      </div>
+      <div class="backer">
+        <div class="backer-label">EXISTING BACKER</div>
+        <div class="backer-name">Chanan Fogel</div>
+        <div class="backer-detail">VP APAC, Taboola.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="contact-eyebrow reveal">SERIES A · 2026</div>
+    <h2 class="contact-title reveal">One platform. Two engines. <em>One window.</em></h2>
+    <p class="contact-sub reveal">For investor inquiries, partnerships, and range operator conversations.</p>
+
+    <div class="contacts">
+      <div class="contact-card reveal">
+        <div class="contact-label">INVESTOR &amp; PARTNERSHIPS</div>
+        <a href="mailto:alon@adl.solutions" class="contact-email">alon@adl.solutions</a>
+        <div class="contact-name">ALON KATVAN · CO-FOUNDER &amp; CEO</div>
+      </div>
+      <div class="contact-card reveal">
+        <div class="contact-label">GENERAL</div>
+        <a href="mailto:info@adl.solutions" class="contact-email">info@adl.solutions</a>
+        <div class="contact-name">ADL TRAINING SOLUTIONS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>© 2026 ADL TRAINING SOLUTIONS</div>
+      <div>HUMAN PERFORMANCE OPTIMIZATION</div>
+      <div><a href="mailto:info@adl.solutions">INFO@ADL.SOLUTIONS</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Tag elements as JS-managed (hides them), then reveal as they enter view.
+  // If JS fails to load, the elements stay visible by default.
+  document.querySelectorAll('.reveal').forEach((el) => el.classList.add('js-reveal'));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+</script>
+
+</body>
+</html>
